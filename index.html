@@ -1,274 +1,639 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Özür Dilerim</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background: linear-gradient(135deg, #ffeaa7, #fab1a0, #fd79a8);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-      position: relative;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D ❤️ B - 3. Ayımız</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-   
-    .heart {
-      position: absolute;
-      color: rgba(255, 255, 255, 0.1);
-      font-size: 2rem;
-      animation: float 8s ease-in-out infinite;
-    }
-    
-    .heart:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
-    .heart:nth-child(2) { top: 20%; right: 20%; animation-delay: -2s; }
-    .heart:nth-child(3) { bottom: 30%; left: 10%; animation-delay: -4s; }
-    .heart:nth-child(4) { bottom: 15%; right: 15%; animation-delay: -6s; }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff6b9d);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text y="16" font-size="16">💖</text></svg>'), auto;
+        }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    .title-wrapper {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      margin-bottom: 40px;
-      text-align: center;
-    }
+        .container {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-    h1 {
-      color: #2d3436;
-      font-size: 2.8rem;
-      font-weight: 300;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-      margin: 0;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-    h1:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-    }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            animation: float 6s infinite linear;
+        }
 
-    .flamingos {
-      position: absolute;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: none;
-      gap: 20px;
-      z-index: 10;
-    }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    .title-wrapper:hover .flamingos {
-      display: flex;
-      animation: fadeInBounce 0.5s ease-out;
-    }
+        .main-title {
+            font-size: 4rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: pulse 2s ease-in-out infinite;
+            z-index: 10;
+            position: relative;
+        }
 
-    .flamingo {
-      width: 100px;
-      height: 100px;
-      animation: dance 2s ease-in-out infinite;
-      position: relative;
-    }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-    .flamingo:nth-child(2) {
-      animation-delay: -0.5s;
-    }
+        .letter-buttons {
+            display: flex;
+            gap: 40px;
+            margin: 30px 0;
+            z-index: 10;
+            position: relative;
+        }
 
-    
-    .flamingo::before {
-      content: '🦩';
-      position: absolute;
-      font-size: 60px;
-      top: 10px;
-      left: 20px;
-      animation: bounce 1s ease-in-out infinite alternate;
-    }
+        .letter-btn {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: none;
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-    @keyframes bounce {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); }
-    }
+        .letter-btn:hover {
+            transform: scale(1.2) rotate(15deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
 
-    @keyframes dance {
-      0%, 100% { transform: rotate(-5deg) translateY(0); }
-      50% { transform: rotate(5deg) translateY(-5px); }
-    }
+        .letter-btn:active {
+            transform: scale(0.9);
+        }
 
-    @keyframes fadeInBounce {
-      0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
+        .interactive-elements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            width: 100%;
+            margin: 40px 0;
+            z-index: 10;
+            position: relative;
+        }
 
-    .flowers {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-      max-width: 600px;
-    }
+        .clickable-item {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
 
-    .flower {
-      width: 80px;
-      height: 80px;
-      position: relative;
-      cursor: pointer;
-      animation: sway 3s ease-in-out infinite;
-    }
+        .clickable-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
 
-    .flower:nth-child(2) { animation-delay: -0.5s; }
-    .flower:nth-child(3) { animation-delay: -1s; }
-    .flower:nth-child(4) { animation-delay: -1.5s; }
-    .flower:nth-child(5) { animation-delay: -2s; }
+        .flower {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: rotate 4s linear infinite;
+        }
 
-    
-    .flower::before {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #a29bfe;
-      border-radius: 50%;
-      top: 30px;
-      left: 30px;
-      box-shadow: 
-        0 -25px 0 -5px #a29bfe,
-        25px 0 0 -5px #a29bfe,
-        0 25px 0 -5px #a29bfe,
-        -25px 0 0 -5px #a29bfe,
-        18px -18px 0 -5px #a29bfe,
-        18px 18px 0 -5px #a29bfe,
-        -18px 18px 0 -5px #a29bfe,
-        -18px -18px 0 -5px #a29bfe;
-    }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-    
-    .flower::after {
-      content: '';
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: #feca57;
-      border-radius: 50%;
-      top: 34px;
-      left: 34px;
-      z-index: 2;
-    }
+        .item-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
 
-    .flower:hover {
-      transform: scale(1.2) rotate(10deg);
-      animation-play-state: paused;
-    }
+        .floating-letters {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
 
-    @keyframes sway {
-      0%, 100% { transform: rotate(-3deg); }
-      50% { transform: rotate(3deg); }
-    }
+        .floating-letter {
+            position: absolute;
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.6);
+            animation: letterFloat 8s infinite linear;
+        }
 
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-        padding: 15px;
-      }
-      
-      .flowers {
-        gap: 20px;
-      }
-      
-      .flower {
-        width: 60px;
-        height: 60px;
-      }
-      
-      .flamingo {
-        width: 80px;
-        height: 80px;
-      }
-    }
-  </style>
+        @keyframes letterFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .message-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            z-index: 100;
+            transition: transform 0.3s ease;
+            max-width: 400px;
+        }
+
+        .message-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .anniversary-counter {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .counter-text {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .special-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .spark {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  
-  <div class="heart">💖</div>
-  <div class="heart">💕</div>
-  <div class="heart">💗</div>
-  <div class="heart">💝</div>
+    <div class="floating-hearts" id="floating-hearts"></div>
+    <div class="floating-letters" id="floating-letters"></div>
+    <div class="special-effects" id="special-effects"></div>
 
-  <div class="title-wrapper">
-    <h1>Kalbini kırdıysam özür dilerim...</h1>
-    <div class="flamingos">
-      <div class="flamingo"></div>
-      <div class="flamingo"></div>
+    <div class="container">
+        <h1 class="main-title">D ❤️ B</h1>
+        
+        <div class="anniversary-counter">
+            <div class="counter-text">🌟 3. Ayımız Kutlu Olsun! 🌟</div>
+        </div>
+
+        <div class="letter-buttons">
+            <button class="letter-btn" onclick="showMessage('D')">D</button>
+            <button class="letter-btn" onclick="showMessage('B')">B</button>
+        </div>
+
+        <div class="interactive-elements">
+            <div class="clickable-item" onclick="createHeartRain()">
+                <span class="flower">💖</span>
+                <div class="item-text">Kalp Yağmuru</div>
+            </div>
+            
+            <div class="clickable-item" onclick="createFlowerExplosion()">
+                <span class="flower">🌹</span>
+                <div class="item-text">Gül Patlaması</div>
+            </div>
+            
+            <div class="clickable-item" onclick="createSparkles()">
+                <span class="flower">⭐</span>
+                <div class="item-text">Yıldız Patlaması</div>
+            </div>
+            
+            <div class="clickable-item" onclick="playMusic()">
+                <span class="flower">🎵</span>
+                <div class="item-text"></div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="flowers">
-    <div class="flower"></div>
-    <div class="flower"></div>
-    <div class="flower"></div>
-    <div class="flower"></div>
-    <div class="flower"></div>
-  </div>
+    <div class="message-popup" id="message-popup">
+        <button class="close-btn" onclick="closeMessage()">&times;</button>
+        <div id="popup-content"></div>
+    </div>
 
-  <script>
-    
-    document.querySelectorAll('.flower').forEach(flower => {
-      flower.addEventListener('click', function() {
-        this.style.animation = 'none';
-        this.style.transform = 'scale(1.3) rotate(360deg)';
-        
-        
-        const heart = document.createElement('div');
-        heart.innerHTML = '💖';
-        heart.style.position = 'absolute';
-        heart.style.left = Math.random() * window.innerWidth + 'px';
-        heart.style.top = '50%';
-        heart.style.fontSize = '2rem';
-        heart.style.animation = 'floatUp 2s ease-out forwards';
-        heart.style.pointerEvents = 'none';
-        document.body.appendChild(heart);
-        
-        setTimeout(() => {
-          heart.remove();
-        }, 2000);
-        
-        setTimeout(() => {
-          this.style.animation = 'sway 3s ease-in-out infinite';
-          this.style.transform = '';
-        }, 1000);
-      });
-    });
-
-   
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes floatUp {
-        0% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
+    <script>
+        // Floating hearts animation
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            document.getElementById('floating-hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
         }
-        100% {
-          opacity: 0;
-          transform: translateY(-200px) scale(0.5);
+
+        setInterval(createFloatingHeart, 800);
+
+        // Floating letters animation
+        function createFloatingLetter() {
+            const letters = ['D', 'B'];
+            const letter = document.createElement('div');
+            letter.className = 'floating-letter';
+            letter.innerHTML = letters[Math.floor(Math.random() * letters.length)];
+            letter.style.left = Math.random() * 100 + 'vw';
+            letter.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            document.getElementById('floating-letters').appendChild(letter);
+            
+            setTimeout(() => {
+                letter.remove();
+            }, 10000);
         }
-      }
-    `;
-    document.head.appendChild(style);
-  </script>
+
+        setInterval(createFloatingLetter, 2000);
+
+        // Message functions
+        function showMessage(letter) {
+            const messages = {
+                'D': '💖 Darısı 1.2.3. Yıllarımıza Sevgilim 💖',
+                'B': '💖 Bütün mutlulugum seninle başladı! 💖'
+            };
+            
+            document.getElementById('popup-content').innerHTML = messages[letter];
+            document.getElementById('message-popup').classList.add('show');
+            createHeartRain();
+        }
+
+        function showLoveMessage() {
+            const loveMessages = [
+                '💕 3 ay önce hayatımda bir mucize başladı... Sen! 💕',
+                '🌹 Her gün seninle daha güzel geçiyor 🌹',
+                '💖 3. ayımızda bile ilk günkü gibi heyecanlıyım 💖',
+                '⭐ Sen benim yıldızımsın, hayallerimin gerçek hali ⭐',
+                '💌 3 ay içinde öğrendim ki, aşk bu demekmiş 💌'
+            ];
+            
+            const randomMessage = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+            document.getElementById('popup-content').innerHTML = randomMessage;
+            document.getElementById('message-popup').classList.add('show');
+        }
+
+        function showMemory() {
+            const memories = [
+                '📸 İlk buluşmamız... Kalbim hala o heyecanı yaşıyor 📸',
+                '🎭 İlk el ele tutuşumuz... Elektrik çarpmıştı sanki 🎭',
+                '☕ İlk kahvemiz... Saatler dakika gibi geçmişti ☕',
+                '🌙 İlk "seni seviyorum"... Dünyam değişmişti 🌙',
+                '🎈 3 ay içinde binlerce güzel anı... Daha binlercesi için 🎈'
+            ];
+            
+            const randomMemory = memories[Math.floor(Math.random() * memories.length)];
+            document.getElementById('popup-content').innerHTML = randomMemory;
+            document.getElementById('message-popup').classList.add('show');
+        }
+
+        function closeMessage() {
+            document.getElementById('message-popup').classList.remove('show');
+        }
+
+        // Special effects
+        function createHeartRain() {
+            for(let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💖';
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '-50px';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    heart.style.zIndex = '50';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.animation = 'float 3s linear forwards';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 100);
+            }
+        }
+
+        function createFlowerExplosion() {
+            const flowers = ['🌹', '🌺', '🌸', '🌼', '🌻', '🌷'];
+            
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const flower = document.createElement('div');
+                    flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+                    flower.style.position = 'fixed';
+                    flower.style.left = '50vw';
+                    flower.style.top = '50vh';
+                    flower.style.fontSize = '30px';
+                    flower.style.zIndex = '50';
+                    flower.style.pointerEvents = 'none';
+                    
+                    const angle = (i / 15) * 360;
+                    const distance = 200;
+                    const x = Math.cos(angle * Math.PI / 180) * distance;
+                    const y = Math.sin(angle * Math.PI / 180) * distance;
+                    
+                    flower.style.transform = `translate(${x}px, ${y}px) scale(0)`;
+                    flower.style.transition = 'all 1s ease-out';
+                    document.body.appendChild(flower);
+                    
+                    setTimeout(() => {
+                        flower.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+                    }, 10);
+                    
+                    setTimeout(() => flower.remove(), 2000);
+                }, i * 50);
+            }
+        }
+
+        function createSparkles() {
+            for(let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const spark = document.createElement('div');
+                    spark.className = 'spark';
+                    spark.style.left = Math.random() * 100 + 'vw';
+                    spark.style.top = Math.random() * 100 + 'vh';
+                    spark.style.animationDelay = Math.random() * 2 + 's';
+                    document.getElementById('special-effects').appendChild(spark);
+                    
+                    setTimeout(() => spark.remove(), 2000);
+                }, i * 100);
+            }
+        }
+
+        function playMusic() {
+            // Create a beautiful music player popup with multiple options
+            const musicPopup = document.createElement('div');
+            musicPopup.style.position = 'fixed';
+            musicPopup.style.top = '50%';
+            musicPopup.style.left = '50%';
+            musicPopup.style.transform = 'translate(-50%, -50%)';
+            musicPopup.style.background = 'linear-gradient(45deg, #ff6b9d, #c44569)';
+            musicPopup.style.padding = '40px';
+            musicPopup.style.borderRadius = '25px';
+            musicPopup.style.color = 'white';
+            musicPopup.style.textAlign = 'center';
+            musicPopup.style.boxShadow = '0 25px 70px rgba(0,0,0,0.5)';
+            musicPopup.style.zIndex = '200';
+            musicPopup.style.maxWidth = '450px';
+            musicPopup.style.minWidth = '350px';
+            musicPopup.style.animation = 'pulse 0.3s ease-out';
+            
+            musicPopup.innerHTML = `
+                <button onclick="this.parentElement.remove()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer; opacity: 0.8;">&times;</button>
+                
+                <div style="margin-bottom: 25px;">
+                    <h2 style="margin-bottom: 15px; font-size: 2rem;">🎵 Bizim Şarkımız 🎵</h2>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Ed Sheeran - Perfect</h3>
+                        <p style="font-size: 1rem; opacity: 0.9; font-style: italic;">"Darling, you look perfect tonight"</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px; margin: 25px 0;">
+                    <button onclick="openYouTube()" 
+                            style="background: #ff4757; border: none; color: white; padding: 15px 25px; border-radius: 30px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2);"
+                            onmouseover="this.style.transform='scale(1.05)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                        🎬 YouTube'da Dinle
+                    </button>
+                    
+                    <button onclick="openSpotify()" 
+                            style="background: #1DB954; border: none; color: white; padding: 15px 25px; border-radius: 30px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2);"
+                            onmouseover="this.style.transform='scale(1.05)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                        🎵 Spotify'da Dinle
+                    </button>
+                    
+                    <button onclick="playRomanticSound()" 
+                            style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 12px 25px; border-radius: 30px; cursor: pointer; font-size: 1rem; transition: all 0.3s ease;"
+                            onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                        💖 Romantic Melodi Çal
+                    </button>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 15px;">
+                    <p style="font-size: 1rem; line-height: 1.4;">
+                        💕 "3 ay önce hayatıma girdin ve her şey değişti...<br>
+                        Bu şarkı bizim hikayemizi anlatıyor" 💕
+                    </p>
+                </div>
+            `;
+            
+            document.body.appendChild(musicPopup);
+            
+            // Create special music effect
+            createMusicNotes();
+        }
+        
+        function openYouTube() {
+            window.open('https://www.youtube.com/watch?v=2Vv-BfVoq4g', '_blank');
+            createHeartRain();
+        }
+        
+        function openSpotify() {
+            window.open('https://open.spotify.com/search/ed%20sheeran%20perfect', '_blank');
+            createFlowerExplosion();
+        }
+        
+        function playRomanticSound() {
+            // Simple romantic audio effect
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Create romantic chord progression
+            const playNote = (frequency, duration, delay = 0) => {
+                setTimeout(() => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                    gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.1);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + duration);
+                }, delay);
+            };
+            
+            // Play romantic melody
+            const melody = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00]; // C-D-E-F-G-A
+            melody.forEach((freq, index) => {
+                playNote(freq, 1.5, index * 300);
+            });
+            
+            createSparkles();
+            
+            // Show message
+            setTimeout(() => {
+                document.getElementById('popup-content').innerHTML = '🎶 Romantic melodi çalıyor... Kalbin bu sesi duyabiliyor mu? 🎶';
+                document.getElementById('message-popup').classList.add('show');
+            }, 500);
+        }
+        
+        function createMusicNotes() {
+            const notes = ['🎵', '🎶', '🎼', '♪', '♫', '♬'];
+            
+            for(let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const note = document.createElement('div');
+                    note.innerHTML = notes[Math.floor(Math.random() * notes.length)];
+                    note.style.position = 'fixed';
+                    note.style.left = Math.random() * 100 + 'vw';
+                    note.style.top = '100vh';
+                    note.style.fontSize = (Math.random() * 15 + 20) + 'px';
+                    note.style.zIndex = '150';
+                    note.style.pointerEvents = 'none';
+                    note.style.color = 'white';
+                    note.style.textShadow = '2px 2px 4px rgba(0,0,0,0.5)';
+                    note.style.animation = 'float 4s ease-out forwards';
+                    document.body.appendChild(note);
+                    
+                    setTimeout(() => note.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        // Click effects on body
+        document.body.addEventListener('click', function(e) {
+            if(!e.target.closest('.clickable-item') && !e.target.closest('.letter-btn')) {
+                const clickEffect = document.createElement('div');
+                clickEffect.innerHTML = '💖';
+                clickEffect.style.position = 'fixed';
+                clickEffect.style.left = e.clientX + 'px';
+                clickEffect.style.top = e.clientY + 'px';
+                clickEffect.style.fontSize = '20px';
+                clickEffect.style.pointerEvents = 'none';
+                clickEffect.style.zIndex = '100';
+                clickEffect.style.animation = 'pulse 1s ease-out forwards';
+                document.body.appendChild(clickEffect);
+                
+                setTimeout(() => clickEffect.remove(), 1000);
+            }
+        });
+    </script>
 </body>
 </html>
